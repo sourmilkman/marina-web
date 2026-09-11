@@ -1,0 +1,10 @@
+{
+  "name": "marina-mulliner-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "build": "node --check src/main.js",
+    "preview": "python3 -m http.server 4173"
+  }
+}
