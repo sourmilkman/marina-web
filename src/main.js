@@ -1,5 +1,4 @@
-const works = Array.from({ length: 8 }, (_, i) => ({ src: `/art/work-${i + 1}.svg`, alt: `Abstract painting, artwork ${String(i + 1).padStart(2, '0')}` }));
-const installations = Array.from({ length: 5 }, (_, i) => ({ src: `/art/installation-${i + 1}.svg`, alt: `Installation view ${String(i + 1).padStart(2, '0')}: painting displayed in a restrained concrete interior` }));
+const works = ["20260704_100753.jpg","20260704_100804.jpg","20260704_100808.jpg","20260704_101359.jpg","20260704_101409.jpg","20260704_101435.jpg","Screenshot_20260704_101130_Gallery.jpg","Screenshot_20260704_101213_Gallery.jpg","Screenshot_20260704_105006_Gallery.jpg","Screenshot_20260704_105048_Gallery.jpg","Screenshot_20260704_105135_Gallery.jpg"].map((name, i) => ({ src: '/art/' + name, alt: 'Painting by Marina Mulliner, photograph ' + (i + 1) }));
 const main = document.querySelector('#main');
 const header = document.querySelector('.site-header');
 const menu = document.querySelector('.menu');
@@ -12,15 +11,15 @@ const pages = {
   '/': () => `<section class="hero">
     <div class="hero-type"><p>Paintings</p><h1>Marina<br><span>Mulliner</span></h1></div>
     <figure class="hero-art"><img src="${works[0].src}" alt="${works[0].alt}" fetchpriority="high"></figure>
-    <p class="hero-index">Selected work<br>01 / 08</p>
+    <p class="hero-index">Selected work<br>01 / ${String(works.length).padStart(2, "0")}</p>
     <p class="scroll-cue">Scroll to enter</p>
   </section>
-  <section class="home-install reveal"><div class="section-label"><span>01</span><p>In situ</p></div>${image(installations[0])}</section>
+  <section class="home-install reveal"><div class="section-label"><span>01</span><p>Selected painting</p></div>${image(works[1])}</section>
   <section class="statement reveal"><p>Paintings concerned with atmosphere, landscape, memory and the uncertain boundary between abstraction and place.</p><a href="#/work">View the work <span>↗</span></a></section>
   <section class="home-pair reveal">${image(works[3])}${image(works[5])}<p>Marina Mulliner<br>Selected paintings</p></section>`,
   '/work': () => `${pageHead('01', 'Selected works', 'Work')}<section class="work-grid">${works.map((w, i) => `<button class="work-item item-${i + 1} reveal" data-index="${i}" aria-label="Open artwork ${i + 1}">${image(w)}<span>${String(i + 1).padStart(2, '0')}</span></button>`).join('')}</section>`,
-  '/installations': () => `${pageHead('02', 'Paintings in space', 'Installations')}<p class="installation-intro">Studies in scale, light and architectural quiet.</p><section class="installation-list">${installations.map((x, i) => `<figure class="reveal">${image(x)}<figcaption><span>${String(i + 1).padStart(2, '0')}</span> Installation study</figcaption></figure>`).join('')}</section>`,
-  '/about': () => `${pageHead('03', 'Artist', 'Marina<br>Mulliner')}<section class="about-grid"><div class="about-copy reveal"><p class="role">Artist</p><p class="bio-placeholder">Biography forthcoming.</p><p class="editable">This area is reserved for Marina Mulliner’s biography and can be updated when approved text is available.</p></div><figure class="about-image reveal">${image(installations[3])}</figure></section>`,
+  '/installations': () => `${pageHead('02', 'Paintings in space', 'Installations')}<p class="installation-intro">Installation photographs forthcoming.</p>`,
+  '/about': () => `${pageHead('03', 'Artist', 'Marina<br>Mulliner')}<section class="about-grid"><div class="about-copy reveal"><p class="role">Artist</p><p class="bio-placeholder">Biography forthcoming.</p><p class="editable">This area is reserved for Marina Mulliner’s biography and can be updated when approved text is available.</p></div><figure class="about-image reveal">${image(works[3])}</figure></section>`,
   '/contact': () => `${pageHead('04', 'Studio enquiries', 'Contact')}<section class="contact-grid"><div class="contact-details reveal"><p>For artwork, exhibition and studio enquiries.</p><a href="mailto:studio@marinamulliner.com">studio@marinamulliner.com</a><a class="optional" href="#">Instagram — forthcoming</a></div><form class="reveal"><label>Name<input name="name" autocomplete="name" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Message<textarea name="message" rows="5" required></textarea></label><button type="submit">Send enquiry <span>↗</span></button><p class="form-status" aria-live="polite"></p></form></section>`
 };
 
